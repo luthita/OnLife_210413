@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+#wrap{width:1200px; margin:auto;}
+
+header{height:100px; background:#2C558E;}
+header .logo{width:300px;}
+header .login-info{width:900px;}
+
+.contents{height:500px;}
+
+footer{height: 100px;}
+
+#bannerImage{object-fit:cover;}
+
+.sign-up-box {width:550px;}
+
+.bgSkyBlue{background:#A8CAF7;}
+.bgGrey{background:#F2F2F2;}
+.textGray{color:#F2F2F2;}
+.textPink{color:#F29680;}
+.textDeepBlue{color:#2C558E;}
+.textSkyBlue{color:#A8CAF7;}
+.textBlue{color:#698FC0;}

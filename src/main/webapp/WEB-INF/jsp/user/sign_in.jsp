@@ -24,7 +24,7 @@
 				<input type="password" class="form-control" id="password" name="password">
 			</div>
 			
-			<a href="#" class="textBlue pb-3">Forgotten password?</a>
+			<a href="/user/forgot_password_view" class="textBlue pb-3">Forgotten password?</a>
 			<hr>
 			<input type="submit" class="btn btn-primary btn-block" value="로그인">
 			<a href="/user/sign_up_view" class="btn btn-dark btn-block">회원가입</a>

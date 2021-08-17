@@ -3,12 +3,16 @@ package com.onlife.user;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mysql.cj.protocol.a.result.ResultsetRowsCursor;
 import com.onlife.common.EncryptUtils;
 import com.onlife.user.bo.UserBO;
 import com.onlife.user.model.User;
@@ -50,6 +54,34 @@ public class UserRestController {
 		Map<String, String> result = new HashMap<>();
 		result.put("result", "success");
 		
+		return result;
+	}
+	
+	@PostMapping("/sign_in")
+	public Map<String, String> signIn(
+			@RequestParam("loginId") String loginId,
+			@RequestParam("password") String password,
+			HttpServletRequest request){
+		
+		String encryptPassword = EncryptUtils.md5(password);
+		
+		User user = userBO.getUserByloginIdAndPassword(loginId, encryptPassword);
+		
+		Map<String, String> result = new HashMap<>();
+		if(user != null) {
+			// 성공 : 세션에 저장
+			HttpSession session = request.getSession();
+			session.setAttribute("userLoginId", user.getLoginId());
+			session.setAttribute("userName", user.getName());
+			session.setAttribute("userId", user.getId());
+			
+			result.put("result", "success");
+		} else {
+			// 실패 : 에러 ㅓ리
+			result.put("result", "fail");
+			result.put("message", "존재하지 않는 ID 입니다.");
+			
+		}
 		return result;
 	}
 }

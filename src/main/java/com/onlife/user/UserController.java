@@ -71,4 +71,17 @@ public class UserController {
 		
 		return "redirect:/user/sign_in_view";
 	}
+	
+	/**
+	 * 
+	 * 비밀번호 찾기
+	 * 
+	 */
+	@RequestMapping("/forgot_password_view")
+	public String forgotPassword(Model model) {
+		
+		model.addAttribute("viewName","user/forgot_password");
+		return "template/layout";
+		
+	}
 }

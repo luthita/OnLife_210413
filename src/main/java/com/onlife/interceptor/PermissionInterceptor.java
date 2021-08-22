@@ -31,7 +31,7 @@ public class PermissionInterceptor implements HandlerInterceptor{
 		logger.info("##### uri : " + uri);
 		
 		// 비 로그인 && /post		=> 로그인 페이지로 리다이렉트
-		if(userLoginId == null && uri.startsWith("/post")) {
+		if(userLoginId == null && (uri.startsWith("/post") || uri.startsWith("/timeline"))) {
 			response.sendRedirect("/user/sign_in_view");
 			return false;
 		}

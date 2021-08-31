@@ -16,4 +16,23 @@ public interface PostDAO {
 			@Param("subject") String subject,
 			@Param("content") String content,
 			@Param("imagePath") String imagePath);
+	
+	public Post selectPostByUserId(
+			@Param("userId") int userId,
+			@Param("standardId") Integer standardId);
+	
+	public int selectPostIdByUserIdAndSort(
+			@Param("userId") int userId, 
+			@Param("sort") String sort);
+	
+	public Post selectPostByPostIdAndUserId(
+			@Param("postId") int postId,
+			@Param("userId") int userId);
+	
+	public int updatePost(
+			@Param("postId") int postId,
+			@Param("userId") int userId,
+			@Param("subject") String subject,
+			@Param("content") String content,
+			@Param("imagePath") String imagePath);
 }

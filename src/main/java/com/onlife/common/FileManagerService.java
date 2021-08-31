@@ -39,6 +39,23 @@ public class FileManagerService {
 		Files.write(path, bytes);
 		
 		// 이미지 URL 만들어 리턴
-		return "/images/" + directoryName;
+		return "/images/" + directoryName + file.getOriginalFilename();
+	}
+	
+	// 파일 삭제
+	public void deleteFile(String imagePath) throws IOException {
+		//		C:\\Users\\luthi\\OneDrive\\바탕 화면\\Web개발\\06. Spring_project\
+		// 		\ex\\memo_workspace\\Memo\\images/
+		imagePath.replace("/images/", "");
+		Path path = Paths.get(FILE_UPLOAD_PATH + imagePath.replace("/images/",""));
+		if(Files.exists(path)) {
+			Files.delete(path);		// 이미지 삭제
+		}
+		
+		// 디렉토리 삭제
+		path = path.getParent();
+		if(Files.exists(path)) {
+			Files.delete(path);
+		}
 	}
 }
